@@ -18,7 +18,7 @@
 </form>
 <hr></hr>
 <form action="LogIn.php" method="POST">
-    <label>If you are already registr, click to log in!</label>
+    <label>If you are already register, click to log in!</label>
     <input type = "submit" value="Log in" name="Klikni"/><br>
 
 </form>
@@ -34,15 +34,15 @@ if(isset($_POST["Registruj_se"])) {
         $conn = new PDO("mysql:host={$servername};dbname=registracija", 'root', '');
 
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully!   +++   ";
+
 
         if (($_POST['lozinka'] === $_POST['potvrda_lozinke']) && $_POST['Kor_Ime'] !== "" && $_POST['lozinka'] !== "") {
 
             $conn->exec("INSERT INTO logovanje(username, password) VALUES ('{$_POST['Kor_Ime']}', '{$_POST['lozinka']}')");
             echo "<meta http-equiv='refresh' content='0'>";
-            echo "Uspesno ste se registrovali!";
+            echo "Your registration was successful!";
         } else {
-            echo "Registracija neuspesna!";
+            echo "REGISTRATION WAS UNSUCCESSFUL! Please try again!";
         }
 
         $conn = null;
