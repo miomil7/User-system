@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-    <title>DOBRODOSLI</title><br>
+    <title>Welcome</title><br>
 </head>
 <body>
-<p align="center">DOBRODOSLI</p><br><br>
-<h3 align="center"><a href="LogIn.php"> Ovde </a>   se mozete ulogovati</h3><br>
-<h3 align="center"><a href="registracija.php"> Ovde</a>  se mozete registrovati</h3>
+<p align="center">WELCOME</p><br><br>
+<h3 align="center"><a href="LogIn.php">Log in</a>, please!</h3><br>
+<h3 align="center"><a href="registracija.php">Register</a>, please!</h3>
 
 
 </body>

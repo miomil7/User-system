@@ -8,13 +8,17 @@
 
 
 <form action="" method="post">
-    <h2 align="center"><label>Username:</label></h2>
-    <h1 align="center"><input type="text" name="Kor_Ime"  required="required" placeholder="Username"/></h1><br />
-    <h2 align="center"><label>Password:</label></h2>
-    <h1 align="center"><input type="password" name="lozinka"  required="required" placeholder="Password"/></h1><br />
-    <h2 align="center"><label>Confirm password:</label></h2>
-    <h1 align="center"><input type="password" name="potvrda_lozinke"  required="required" placeholder="Confirm password"/></h1><br />
-   <h1 align="center"> <input type="submit" value="Register" name="Registruj se"/></h1><br />
+    <h2 align="center"><label>Name:</label>
+    <input type="text" name="ime"  required="required" placeholder="ime"/></h2><br />
+    <h2 align="center"><label>Surname:</label>
+        <input type="text" name="prezime"  required="required" placeholder="Prezime"/></h2><br />
+    <h2 align="center"><label>Username:</label>
+    <input type="text" name="Kor_Ime"  required="required" placeholder="Username"/></h2><br />
+    <h2 align="center"><label>Password:</label>
+    <input type="password" name="lozinka"  required="required" placeholder="Password"/></h2><br />
+    <h2 align="center"><label>Confirm password:</label>
+    <input type="password" name="potvrda_lozinke"  required="required" placeholder="Confirm password"/></h2><br />
+   <h2 align="center"> <input type="submit" value="Register" name="Registruj se"/></h2><br />
 </form>
 <hr></hr>
 <form action="LogIn.php" method="POST">
@@ -38,7 +42,7 @@ if(isset($_POST["Registruj_se"])) {
 
         if (($_POST['lozinka'] === $_POST['potvrda_lozinke']) && $_POST['Kor_Ime'] !== "" && $_POST['lozinka'] !== "") {
 
-            $conn->exec("INSERT INTO logovanje(username, password) VALUES ('{$_POST['Kor_Ime']}', '{$_POST['lozinka']}')");
+            $conn->exec("INSERT INTO logovanje(name, surname, username, password) VALUES ('{$_POST['ime']}','{$_POST['prezime']}','{$_POST['Kor_Ime']}', '{$_POST['lozinka']}')");
             echo "<meta http-equiv='refresh' content='0'>";
             echo "Your registration was successful!";
         } else {
@@ -50,8 +54,8 @@ if(isset($_POST["Registruj_se"])) {
         echo $e->getMessage();
     }
      die();
-}
 
+}
         ?>
 
 

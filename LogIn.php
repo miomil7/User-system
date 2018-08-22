@@ -8,10 +8,10 @@
 
 
 <form method="post">
-    <h2 align="center" <label>Username:</label></h2>
-   <h1 align="center"> <input type="text" name="ImeLog"  required="required" placeholder="Username"/></h1><br />
-    <h2 align="center"><label>Password:</label></h2>
-    <h1 align="center"><input type="password" name="LozinkaLog"  required="required" placeholder="Password"/></h1><br/><br />
+    <h2 align="center" <label>Username:</label>
+   <input type="text" name="ImeLog"  required="required" placeholder="Username"/></h2><br />
+    <h2 align="center"><label>Password:</label>
+    <input type="password" name="LozinkaLog"  required="required" id="1" placeholder="Password"/> <input type="checkbox" onclick="prikazisifru()" Show password></h2>
     <h2 align="center"> <input type="submit" value="Log in" name="submit"/></h2><br />
 </form>
     <h2>If you do not have account, please click <a href="registracija.php">here.</a></h2>
@@ -45,6 +45,8 @@ if(!empty($result)){
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+
+
 
 }
 
