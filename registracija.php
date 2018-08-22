@@ -3,17 +3,24 @@
 <head>
     <title>Registration</title>
 </head>
-<hr>
-<h1 align="center">REGISTRATION</h1><br><br>
 
 
+<body>
+<?php include_once "nav.php";
+
+?>
+<br><h1 align="center">REGISTRATION</h1><br><br>
+
+<?php
+
+?>
 <form action="" method="post">
     <h2 align="center"><label>Name:</label>
-    <input type="text" name="ime"  required="required" placeholder="ime"/></h2><br />
+    <input type="text" name="ime"  required="required" placeholder="Name"/></h2><br />
     <h2 align="center"><label>Surname:</label>
-        <input type="text" name="prezime"  required="required" placeholder="Prezime"/></h2><br />
-    <h2 align="center"><label>Username:</label>
-    <input type="text" name="Kor_Ime"  required="required" placeholder="Username"/></h2><br />
+        <input type="text" name="prezime"  required="required" placeholder="Surname"/></h2><br />
+    <h2 align="center"><label>Mail:</label>
+    <input type="text" name="Kor_Ime"  required="required" placeholder="Mail"/></h2><br />
     <h2 align="center"><label>Password:</label>
     <input type="password" name="lozinka"  required="required" placeholder="Password"/></h2><br />
     <h2 align="center"><label>Confirm password:</label>
@@ -26,8 +33,9 @@
     <input type = "submit" value="Log in" name="Klikni"/><br>
 
 </form>
-
+</body>
 <?php
+
 if(isset($_POST["Registruj_se"])) {
     $servername = "localhost";
     $username = "root";
@@ -42,9 +50,10 @@ if(isset($_POST["Registruj_se"])) {
 
         if (($_POST['lozinka'] === $_POST['potvrda_lozinke']) && $_POST['Kor_Ime'] !== "" && $_POST['lozinka'] !== "") {
 
-            $conn->exec("INSERT INTO logovanje(name, surname, username, password) VALUES ('{$_POST['ime']}','{$_POST['prezime']}','{$_POST['Kor_Ime']}', '{$_POST['lozinka']}')");
+            $conn->exec("INSERT INTO logovanje(name, surname, mail, password) VALUES ('{$_POST['ime']}','{$_POST['prezime']}','{$_POST['Kor_Ime']}', '{$_POST['lozinka']}')");
             echo "<meta http-equiv='refresh' content='0'>";
-            echo "Your registration was successful!";
+            $poruka= "Your registration was successful!";
+
         } else {
             echo "REGISTRATION WAS UNSUCCESSFUL! Please try again!";
         }
@@ -56,10 +65,11 @@ if(isset($_POST["Registruj_se"])) {
      die();
 
 }
+
         ?>
 
 
-<hr></hr>
+<hr>
 
 </body>
 
