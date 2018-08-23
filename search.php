@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,10 @@
         <h1 align="center"><input type="submit" value="Show all users" name="svi"/></h1>
     </form>
     <?php
+    $_SESSION['isLogIn']=$_POST['mail'];
+    if ($_SESSION['isLogIn']==null)
+        header("Location: LogIn.php");
+
 
     $link = mysqli_connect("localhost", "root", "", "registracija");
 
@@ -32,17 +37,21 @@
 
     if (isset($_POST["svi"])) {
         $sql = "SELECT * FROM logovanje";
-        }
-         elseif (isset($_POST["submitName"])) {
-        $sql = "SELECT * FROM logovanje WHERE name = '{$_POST['imeLog']}'";
-        }
-         elseif (isset($_POST["submitUser"])) {
-        $sql = "SELECT * FROM logovanje WHERE mail = '{$_POST['userLog']}'";
-        }
+    }
+    elseif (isset($_POST["submitName"])) {
+        $term = $_POST['imeLog'];
+        $sql = "SELECT * FROM logovanje WHERE name like '$term%'";
 
-        if ($result = mysqli_query($link, $sql)) {
 
-            if (mysqli_num_rows($result) > 0) {
+    }
+    elseif (isset($_POST["submitUser"])) {
+        $term = $_POST['userLog'];
+        $sql = "SELECT * FROM logovanje WHERE name like '$term%'";
+    }
+
+    if ($result = mysqli_query($link, $sql)) {
+
+        if (mysqli_num_rows($result) > 0) {
 
 //               <table class="table">;
 //  <thead class="thead-dark">;
@@ -64,29 +73,29 @@
 //  echo "</tbody>";
 //echo "</table>";
 
-                echo "<table>";
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>Name</th>";
+            echo "<th>Surname</th>";
+            echo "<th>Mail</th>";
+            echo "</tr>";
+            while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
-                echo "<th>Name</th>";
-                echo "<th>Surname</th>";
-                echo "<th>Mail</th>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td>" . $row['surname'] . "</td>";
+                echo "<td>" . $row['mail'] . "</td>";
                 echo "</tr>";
-                while ($row = mysqli_fetch_array($result)) {
-                    echo "<tr>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['surname'] . "</td>";
-                    echo "<td>" . $row['mail'] . "</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-
-                mysqli_free_result($result);
-            } else {
-                echo "There is no user with that username";
             }
+            echo "</table>";
+
+            mysqli_free_result($result);
         } else {
-            echo "ERROR: Could not able to execute $sql. " .
-                mysqli_error($link);
+            echo "There is no user with that username";
         }
+    } else {
+        echo "ERROR: Could not able to execute $sql. " .
+            mysqli_error($link);
+    }
 
     mysqli_close($link);
 
